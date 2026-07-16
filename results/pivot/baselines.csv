@@ -1,0 +1,6 @@
+algo,threshold,peak_heap_mb,patterns
+gspan,sig=0.10/tau=0,1331,3215
+jcz-atw,sig=0.10/tau=0.5,682,243
+wfsm-maxpws,sig=0/tau=20,803,1253
+wfsm-maxpws,sig=0/tau=10,1253,3167
+dewgspan,sig=0/tau=10,1387,3167

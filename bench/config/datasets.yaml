@@ -1,0 +1,52 @@
+# TUDataset entries used by the experiments (metadata reference).
+#
+# As shipped by TUDataset, these four chemistry datasets are simple graphs with
+# unlabelled edges: no parallel edges (max edge multiplicity 1) and no edge
+# labels. The multigraph machinery is still exercised by data/sample and by the
+# optional data/scripts/make_multigraph.py path, which expands chemical bond
+# order into parallel edges from *_edge_labels.txt (available for MUTAG, PTC_MR,
+# and Yeast, among others; not for NCI1/NCI109).
+
+datasets:
+
+  mutag:
+    name: MUTAG
+    num_graphs: 188
+    num_vertex_labels: 7
+    avg_vertices: 17.93
+    avg_edges: 19.79
+    num_classes: 2
+    source: "Debnath et al. 1991"
+    raw_dir: data/raw/MUTAG
+    common_format: data/weighted/{dist}/MUTAG.{dist}.s{seed}.json
+
+  ptc_mr:
+    name: PTC_MR
+    num_graphs: 344
+    num_vertex_labels: 19
+    num_classes: 2
+    source: "Toivonen / Helma et al. 2003 - PTC-MR variant (male rats)"
+    note: |
+      Picked over PTC_FM (349) / PTC_FR / PTC_MM per survey caveat: PTC_MR
+      is the most commonly cited variant. If results require PTC-FM as well,
+      add a sibling entry rather than overwriting this one.
+    raw_dir: data/raw/PTC_MR
+    common_format: data/weighted/{dist}/PTC_MR.{dist}.s{seed}.json
+
+  nci1:
+    name: NCI1
+    num_graphs: 4110
+    num_vertex_labels: 37
+    num_classes: 2
+    source: "Wale et al. 2008 - non-small-cell lung anti-cancer"
+    raw_dir: data/raw/NCI1
+    common_format: data/weighted/{dist}/NCI1.{dist}.s{seed}.json
+
+  nci109:
+    name: NCI109
+    num_graphs: 4127
+    num_vertex_labels: 38
+    num_classes: 2
+    source: "NCI/NIH - ovarian cancer"
+    raw_dir: data/raw/NCI109
+    common_format: data/weighted/{dist}/NCI109.{dist}.s{seed}.json

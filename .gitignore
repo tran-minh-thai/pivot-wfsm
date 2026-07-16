@@ -1,0 +1,23 @@
+# Build
+target/
+*.class
+
+# Regenerable data (produced by data/scripts/*.py)
+data/raw/
+data/weighted/
+env/venv/
+env/*/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Manuscript (kept locally, submitted separately - not part of the code repo)
+paper/
+paper_KAIS/
+
+# Local reproduction output (the tracked reference set lives in results/pivot/*.csv)
+results/pivot/repro/
+
+# OS
+.DS_Store

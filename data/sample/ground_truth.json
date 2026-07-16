@@ -1,0 +1,125 @@
+{
+  "dataset": "illustrative",
+  "_comment": "Hand-computed ground truth. Every entry derived in data/sample/README.md. The Java IllustrativeDatasetGroundTruthTest verifies the loader sees the same numbers; once the miner is implemented, IllustrativeMinerGroundTruthTest will verify the algorithm produces these pattern sets exactly.",
+
+  "patterns": [
+    {
+      "id": "P1",
+      "name": "single edge A-B",
+      "dfs_code_canonical": "(0,1,A,_,B)",
+      "occurs_in": [0, 1, 2, 3, 4, 5],
+      "best_w_min_per_graph": {
+        "0": 0.85,
+        "1": 0.90,
+        "2": 0.75,
+        "3": 0.10,
+        "4": 0.65,
+        "5": 0.95
+      },
+      "best_w_avg_per_graph": {
+        "0": 0.85,
+        "1": 0.90,
+        "2": 0.75,
+        "3": 0.10,
+        "4": 0.65,
+        "5": 0.95
+      },
+      "transactional_support": 6,
+      "sigma_min_at_tau_0p5": 5,
+      "sigma_avg_at_tau_0p5": 5
+    },
+    {
+      "id": "P2",
+      "name": "path A-B-C",
+      "dfs_code_canonical": "(0,1,A,_,B)(1,2,B,_,C)",
+      "occurs_in": [0, 1, 2, 3, 4, 5],
+      "best_w_min_per_graph": {
+        "0": 0.70,
+        "1": 0.60,
+        "2": 0.75,
+        "3": 0.10,
+        "4": 0.65,
+        "5": 0.50
+      },
+      "best_w_avg_per_graph": {
+        "0": 0.775,
+        "1": 0.75,
+        "2": 0.80,
+        "3": 0.525,
+        "4": 0.725,
+        "5": 0.725
+      },
+      "transactional_support": 6,
+      "sigma_min_at_tau_0p5": 5,
+      "sigma_avg_at_tau_0p5": 6,
+      "_highlight": "AT sigma_min=6, tau_w=0.5: AVG declares P2 frequent (6/6), MIN rejects (5/6). This is the running example for the MIN-vs-AVG divergence."
+    },
+    {
+      "id": "P3",
+      "name": "path A-B-D",
+      "dfs_code_canonical": "(0,1,A,_,B)(1,2,B,_,D)",
+      "occurs_in": [0, 1, 2],
+      "best_w_min_per_graph": {
+        "0": 0.50,
+        "1": 0.55,
+        "2": 0.70
+      },
+      "transactional_support": 3
+    },
+    {
+      "id": "P4",
+      "name": "triangle A-B-C",
+      "dfs_code_canonical": "(0,1,A,_,B)(1,2,B,_,C)(0,2,A,_,C)",
+      "occurs_in": [3, 4],
+      "best_w_min_per_graph": {
+        "3": 0.10,
+        "4": 0.40
+      },
+      "best_w_avg_per_graph": {
+        "3": 0.55,
+        "4": 0.6166666666666667
+      },
+      "transactional_support": 2,
+      "sigma_min_at_tau_0p5": 0,
+      "sigma_avg_at_tau_0p5": 2,
+      "_note": "Second MIN-vs-AVG divergence. At tau_w=0.5: under MIN both G3 (W_min=0.10) and G4 (W_min=0.40) fail the floor, so sigma_MIN=0. Under AVG both pass (G3 avg=0.55, G4 avg=0.617), so sigma_AVG=2. At sigma_min=2 the two methods disagree by exactly {P4}."
+    },
+    {
+      "id": "P5",
+      "name": "star B at center, leaves A,C,D",
+      "dfs_code_canonical": "(0,1,B,_,A)(0,2,B,_,C)(0,3,B,_,D)",
+      "occurs_in": [0, 1, 2],
+      "best_w_min_per_graph": {
+        "0": 0.50,
+        "1": 0.55,
+        "2": 0.70
+      },
+      "transactional_support": 3
+    }
+  ],
+
+  "expected_frequent_sets": [
+    {
+      "sigma_min": 3,
+      "tau_w": 0.5,
+      "embed_min": ["P1", "P2", "P3", "P5"],
+      "wfsm_maxpws_avg": ["P1", "P2", "P3", "P5"],
+      "symmetric_difference": []
+    },
+    {
+      "sigma_min": 5,
+      "tau_w": 0.5,
+      "embed_min": ["P1", "P2"],
+      "wfsm_maxpws_avg": ["P1", "P2"],
+      "symmetric_difference": []
+    },
+    {
+      "sigma_min": 6,
+      "tau_w": 0.5,
+      "embed_min": ["edge B-C"],
+      "wfsm_maxpws_avg": ["edge B-C", "P2"],
+      "symmetric_difference": ["P2"],
+      "_highlight": "Measure-divergence case study. The 1-edge B-C clears under both aggregators because every graph has a B-C edge with weight >= 0.5. The DIVERGENCE happens at the 2-edge layer: AVG accepts path A-B-C (P2) because G3 avg=0.525 >= 0.5 even though G3's A-B edge is severely weak (0.10); MIN correctly rejects P2 because W_min(P2, G3)=0.10 < 0.5. Symmetric difference = {P2}."
+    }
+  ]
+}

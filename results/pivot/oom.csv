@@ -1,0 +1,11 @@
+algo,seed,peak_heap_mb,patterns,status
+pivot,42,129,4346,ok
+pivot,1337,135,4618,ok
+pivot,2024,134,4668,ok
+pivot,31415,133,4496,ok
+pivot,271828,132,4486,ok
+embed-min,42,,,oom
+embed-min,1337,,,oom
+embed-min,2024,,,oom
+embed-min,31415,,,oom
+embed-min,271828,,,oom

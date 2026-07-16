@@ -1,0 +1,28 @@
+# Weight generation schemes.
+# TUDataset graphs do not ship with edge weights; we synthesise them
+# following the WFSM-MaxPWS convention (Islam et al., PAKDD 2018) to enable
+# direct comparison with their reported baselines.
+
+seeds: [42, 1337, 2024, 31415, 271828]   # 5 seeds → take median across runs
+
+distributions:
+
+  normal:
+    family: gaussian
+    mean: 0.5
+    stddev: 0.15
+    clip: [0.0, 1.0]
+    rationale: |
+      Balanced spread; most edges in [0.2, 0.8]. Default for "ordinary" graphs
+      where most ties have comparable strength.
+
+  nexp:
+    family: negative_exponential
+    scale: 0.25                          # 1 / lambda
+    clip: [0.0, 1.0]
+    rationale: |
+      Heavy mass near zero, long thin tail at high weight - models real
+      networks (STRING combined score, Granovetter tie strength, PPI confidence)
+      where most edges are weak and a few are very strong.
+      This is the harder distribution for MIN: when many edges are weak,
+      W_min approaches zero and bottleneck pruning bites less aggressively.

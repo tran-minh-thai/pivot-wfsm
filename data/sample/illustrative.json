@@ -1,0 +1,106 @@
+{
+  "name": "illustrative",
+  "description": "Original 6-multigraph demonstrative dataset, not derived from any benchmark. Designed so the MIN and AVG aggregators yield DIFFERENT pattern sets at sigma_min=6, tau_w=0.5: the weak-link case, where a single low-weight edge sinks a pattern under MIN but is averaged away under AVG.",
+  "label_strings": ["A", "B", "C", "D"],
+  "graphs": [
+    {
+      "id": 0,
+      "note": "Two parallel A-B edges (multigraph). A-B (strong+weak), A-D-B branch, B-C.",
+      "vertices": [
+        {"id": 0, "label": 0},
+        {"id": 1, "label": 1},
+        {"id": 2, "label": 2},
+        {"id": 3, "label": 3}
+      ],
+      "edges": [
+        {"src": 0, "dst": 1, "weight": 0.85},
+        {"src": 0, "dst": 1, "weight": 0.40},
+        {"src": 1, "dst": 2, "weight": 0.70},
+        {"src": 0, "dst": 3, "weight": 0.65},
+        {"src": 3, "dst": 1, "weight": 0.50}
+      ]
+    },
+    {
+      "id": 1,
+      "note": "Path A-B-C-D with B-D shortcut. All edges fairly strong.",
+      "vertices": [
+        {"id": 0, "label": 0},
+        {"id": 1, "label": 1},
+        {"id": 2, "label": 2},
+        {"id": 3, "label": 3}
+      ],
+      "edges": [
+        {"src": 0, "dst": 1, "weight": 0.90},
+        {"src": 1, "dst": 2, "weight": 0.60},
+        {"src": 2, "dst": 3, "weight": 0.80},
+        {"src": 1, "dst": 3, "weight": 0.55}
+      ]
+    },
+    {
+      "id": 2,
+      "note": "Two distinct B-labeled vertices (v1 and v4). Star around B0 plus a weak A-B1 edge.",
+      "vertices": [
+        {"id": 0, "label": 0},
+        {"id": 1, "label": 1},
+        {"id": 2, "label": 2},
+        {"id": 3, "label": 3},
+        {"id": 4, "label": 1}
+      ],
+      "edges": [
+        {"src": 1, "dst": 0, "weight": 0.75},
+        {"src": 1, "dst": 2, "weight": 0.85},
+        {"src": 1, "dst": 3, "weight": 0.70},
+        {"src": 4, "dst": 2, "weight": 0.95},
+        {"src": 0, "dst": 4, "weight": 0.45}
+      ]
+    },
+    {
+      "id": 3,
+      "note": "Smallest graph. Triangle A-B-C where edge A-B is severely weak (0.10). This is the graph that breaks W_min for any pattern containing A-B and triggers the MIN vs AVG divergence on pattern A-B-C.",
+      "vertices": [
+        {"id": 0, "label": 0},
+        {"id": 1, "label": 1},
+        {"id": 2, "label": 2}
+      ],
+      "edges": [
+        {"src": 0, "dst": 1, "weight": 0.10},
+        {"src": 1, "dst": 2, "weight": 0.95},
+        {"src": 0, "dst": 2, "weight": 0.60}
+      ]
+    },
+    {
+      "id": 4,
+      "note": "Square A-B-C-D with diagonal A-C. Mix of weights - every edge ≥ 0.40.",
+      "vertices": [
+        {"id": 0, "label": 0},
+        {"id": 1, "label": 1},
+        {"id": 2, "label": 2},
+        {"id": 3, "label": 3}
+      ],
+      "edges": [
+        {"src": 0, "dst": 1, "weight": 0.65},
+        {"src": 1, "dst": 2, "weight": 0.80},
+        {"src": 2, "dst": 3, "weight": 0.55},
+        {"src": 3, "dst": 0, "weight": 0.75},
+        {"src": 0, "dst": 2, "weight": 0.40}
+      ]
+    },
+    {
+      "id": 5,
+      "note": "Two parallel A-B edges of contrasting strength (0.55 and 0.95). Tests that the miner picks the BEST embedding (highest W_min) per host graph.",
+      "vertices": [
+        {"id": 0, "label": 0},
+        {"id": 1, "label": 1},
+        {"id": 2, "label": 2},
+        {"id": 3, "label": 3}
+      ],
+      "edges": [
+        {"src": 0, "dst": 1, "weight": 0.55},
+        {"src": 0, "dst": 1, "weight": 0.95},
+        {"src": 1, "dst": 2, "weight": 0.50},
+        {"src": 2, "dst": 3, "weight": 0.40},
+        {"src": 0, "dst": 3, "weight": 0.85}
+      ]
+    }
+  ]
+}

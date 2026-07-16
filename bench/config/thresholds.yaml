@@ -1,0 +1,33 @@
+# Support thresholds (sigma) and weight thresholds (tau_w) per dataset.
+# All sigma are RELATIVE (fraction of |DB|), tau_w in the original weight range [0, 1].
+
+thresholds:
+
+  illustrative:
+    # |DB|=6. Relative sigma is rounded UP to absolute via ceil().
+    # Configurations that expose the MIN-vs-AVG divergence:
+    #   sigma=1.00 (=6 graphs), tau=0.5  -> MIN={B-C} vs AVG={B-C, A-B-C}
+    #   sigma=0.34 (=3 graphs), tau=0.5  -> broader sample
+    sigma_rel: [1.0, 0.84, 0.5, 0.34, 0.17]
+    tau_w:     [0.3, 0.5, 0.7]
+
+  mutag:
+    sigma_rel: [0.30, 0.20, 0.10, 0.05]
+    tau_w:     [0.3, 0.5, 0.7]
+
+  ptc_mr:
+    sigma_rel: [0.30, 0.20, 0.10, 0.05]
+    tau_w:     [0.3, 0.5, 0.7]
+
+  nci1:
+    sigma_rel: [0.10, 0.05, 0.02, 0.01]
+    tau_w:     [0.3, 0.5, 0.7]
+
+  nci109:
+    sigma_rel: [0.10, 0.05, 0.02, 0.01]
+    tau_w:     [0.3, 0.5, 0.7]
+
+# Global guardrails for benchmark runs.
+limits:
+  wall_seconds: 3600    # 60 min/run
+  memory_mb:    16384   # 16 GB
