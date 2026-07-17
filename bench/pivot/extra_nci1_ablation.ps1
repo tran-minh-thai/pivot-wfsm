@@ -30,8 +30,11 @@ Set-Location (Join-Path $PSScriptRoot "..\..")
 $OUT = "results\pivot\extra"; New-Item -ItemType Directory -Force -Path $OUT | Out-Null
 
 $TAG      = "NCI1"
-$SIG      = 0.10
-$TAU      = 0.5
+# Kept as strings so the CSV shows exactly the same field text as
+# reproduce.ps1, which takes them from a -split of "NCI1:0.10:0.5".
+# Run-Java casts them to double; string interpolation must not reformat them.
+$SIG      = "0.10"
+$TAU      = "0.5"
 $SEEDS    = @(42, 1337, 2024, 31415, 271828)
 $VARIANTS = @("pivot","pivot-nopf","pivot-plain","pivot-plain-nopf")
 

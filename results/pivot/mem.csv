@@ -69,3 +69,13 @@ NCI1,nexp,embed-min,0.10,0.3,1337,465,14,ok
 NCI1,nexp,embed-min,0.10,0.3,2024,470,14,ok
 NCI1,nexp,embed-min,0.10,0.3,31415,465,14,ok
 NCI1,nexp,embed-min,0.10,0.3,271828,469,14,ok
+PTC_MR,normal,pivot,0.10,0.5,42,3,19,ok
+PTC_MR,normal,pivot,0.10,0.5,1337,3,18,ok
+PTC_MR,normal,pivot,0.10,0.5,2024,3,17,ok
+PTC_MR,normal,pivot,0.10,0.5,31415,3,16,ok
+PTC_MR,normal,pivot,0.10,0.5,271828,3,18,ok
+PTC_MR,normal,embed-min,0.10,0.5,42,10,19,ok
+PTC_MR,normal,embed-min,0.10,0.5,1337,10,18,ok
+PTC_MR,normal,embed-min,0.10,0.5,2024,11,17,ok
+PTC_MR,normal,embed-min,0.10,0.5,31415,11,16,ok
+PTC_MR,normal,embed-min,0.10,0.5,271828,10,18,ok
