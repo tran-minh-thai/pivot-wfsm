@@ -12,11 +12,13 @@ candidate is re-checked for existence when needed, anchored at a structurally
 chosen pivot vertex and pruned by a local signature. Peak memory then scales with
 a single embedding being probed instead of with all embeddings.
 
-On the standard benchmarks this cuts peak live heap by **12–68×** versus an
-embedding-store baseline that produces the *identical* pattern set, is **2.5–10×**
-faster in the selective-threshold regime, and completes on the full Yeast
-database (79,601 graphs) at a memory budget where the embedding store runs out of
-memory.
+On the standard benchmarks this cuts peak live heap by **3.5–68×** versus an
+embedding-store baseline that produces the *identical* pattern set - the widest
+gaps at the low thresholds and large databases where the embedding store swells,
+the narrowest where it stays small and memory is not the binding constraint. In
+the selective-threshold regime Pivot-WFSM is also **2.5–10×** faster, and it
+completes on the full Yeast database (79,601 graphs) at a memory budget where the
+embedding store runs out of memory.
 
 ## Layout
 
@@ -25,7 +27,7 @@ src/main/java/pivotwfsm/
 ├── core/        graph / pattern / DFS-code types (MultiGraph, MinDFSCode, ...)
 ├── pivot/       the contribution: pivot selection, signature, matcher, miner
 ├── miner/       mining framework + EmbeddingStoreMiner (embedding-store baseline) + prefilter
-├── baselines/   gSpan, JCZ-ATW, WFSM-MaxPWS, DewgSpan, MaxW-gSpan (for context)
+├── baselines/   gSpan, JCZ-ATW, WFSM-MaxPWS, DewgSpan (published methods, for context)
 ├── weight/      edge-weight aggregators (MIN / AVG / MAX)
 └── cli/         SingleRun, PhaseBreakdown (experiment runners)
 bench/pivot/     reproduction scripts (prepare / reproduce, sh + ps1)
