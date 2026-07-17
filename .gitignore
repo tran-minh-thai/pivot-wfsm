@@ -18,6 +18,7 @@ paper_KAIS/
 
 # Local reproduction output (the tracked reference set lives in results/pivot/*.csv)
 results/pivot/repro/
+results/pivot/extra/
 
 # OS
 .DS_Store

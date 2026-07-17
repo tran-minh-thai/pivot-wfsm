@@ -91,9 +91,28 @@ bash bench/pivot/minheap.sh main       # the four standard datasets
 bash bench/pivot/minheap.sh scale      # min-heap vs database size on Yeast
 ```
 
+## 3b. Filling one gap without re-running everything
+
+`reproduce.*` measures every configuration the paper reports, so a full run is
+the simplest way to refresh the numbers. When only one configuration is missing,
+this script measures PTC-MR at tauW=0.5 on its own, with the same protocol, JVM
+flags and CSV columns:
+
+```bash
+bash bench/pivot/extra_ptcmr_tau05.sh                                  # macOS/Linux
+powershell -ExecutionPolicy Bypass -File bench\pivot\extra_ptcmr_tau05.ps1   # Windows
+```
+
+Every normal-distribution dataset is measured at tauW=0.5; PTC-MR is reported at
+0.5 and at 0.3 because the weight threshold moves the result in both directions:
+0.3 admits many more patterns, so the embedding store grows and the memory
+advantage widens, while the runtime advantage narrows. Output goes to
+`results/pivot/extra/`.
+
 ## 4. Output
 
 - Raw CSVs land in `results/pivot/repro/` (main run),
+  `results/pivot/extra/` (the PTC-MR tauW=0.5 top-up),
   `results/pivot/scale/` and `results/pivot/minheap/`.
 - Aggregated tables print at the end of each run; re-print them on macOS/Linux
   with `bash bench/pivot/aggregate.sh results/pivot/repro` and
