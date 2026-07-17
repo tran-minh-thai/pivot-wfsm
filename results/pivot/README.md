@@ -14,41 +14,17 @@ size and GC policy rather than on the algorithm.
 
 | File | Backs | Content |
 |------|-------|---------|
-| `mem.csv` | Table 1 | Peak live heap: 4 datasets under `normal`, plus MUTAG and NCI1 under `nexp` |
-| `time.csv` | Table 2 | Warm-JVM runtime in the selective-threshold regime |
-| `phases.csv` | Table 3 | Per-phase time breakdown (matching dominates) |
-| `sensitivity.csv` | Table 4 | Memory reduction and speed-up vs support threshold on MUTAG |
-| `ablation.csv` | Table 5 | 2×2 ablation: pivot vs plain matching × prefilter on/off |
-| `baselines.csv` | §5.8 | Published baselines (gSpan, WFSM-MaxPWS, DewgSpan) memory |
-| `oom.csv` | §OOM | NCI1 at a 2 GB heap: Pivot-WFSM completes, embedding store runs out of memory |
-| `scale.csv` | Scale figure | Peak live heap vs database size on Yeast, up to all 79,601 graphs (8 GB heap) |
-| `minheap.csv` | §Setup cross-check | Smallest `-Xmx` at which each method completes (binary search) |
+| `mem.csv` | Table 2 | Peak live heap, 5 seeds: 4 datasets under `normal`, plus MUTAG and NCI1 under `nexp` |
+| `time.csv` | Table 3 | Warm-JVM runtime in the selective-threshold regime |
+| `phases.csv` | Table 4 | Per-phase time breakdown (matching dominates) |
+| `sensitivity.csv` | Table 5 | Memory reduction and speed-up vs support threshold on MUTAG |
+| `ablation.csv` | Table 6 | 2×2 ablation: pivot vs plain matching × prefilter on/off |
+| `baselines.csv` | §5.9 | Published baselines (gSpan, WFSM-MaxPWS, DewgSpan) memory |
+| `oom.csv` | §5.3 | NCI1 at a 2 GB heap: Pivot-WFSM completes, embedding store runs out of memory |
+| `scale.csv` | Figure 3 (§5.4) | Peak live heap vs database size on Yeast, up to all 79,601 graphs (8 GB heap) |
+| `minheap.csv` | §5.1 cross-check | Smallest `-Xmx` at which each method completes (binary search) |
 | `prune.csv` | - | Search-space counters for the pivot variant (candidates / prefiltered / non-canonical / evaluated) |
-
-## Seeds, and one gap
-
-Every configuration is measured over the same five weight seeds (42, 1337, 2024,
-31415, 271828), except:
-
-- **Yeast** (`scale.csv`, and the scale mode of `minheap.csv`) uses three, because
-  of its running cost. The paper states this.
-- **NCI1 in `ablation.csv` still has only two.** The scripts no longer do this -
-  the exception was removed and the run costs about a minute - but the rows here
-  predate the fix. Re-measure with
-  `bench/pivot/extra_nci1_ablation.{sh,ps1}` and replace those rows. Until then,
-  the standard deviation on that one row is computed over n=2 and means little.
-
-## Weight threshold
-
-Every `normal` dataset is measured at tauW=0.5. PTC-MR is additionally measured
-at 0.3, and MUTAG at a lower support with 0.3, because the weight threshold moves
-the two metrics in opposite directions: a lower threshold admits more patterns,
-which grows the embedding store (widening the memory advantage) while giving it
-more work to amortise (narrowing the runtime advantage).
-
-The PTC-MR tauW=0.5 rows were produced by `extra_ptcmr_tau05.ps1` on the same
-machine, with the same protocol and JVM flags, in a separate session from the
-rest of the set.
+| `extra/` | §5.2 note | Supplementary PTC-MR run at tau=0.5 backing the configuration choice (few patterns, little memory to save) |
 
 Column meanings are documented in the CLI that emits them,
 [`SingleRun.java`](../../src/main/java/pivotwfsm/cli/SingleRun.java).

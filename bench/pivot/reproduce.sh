@@ -39,7 +39,11 @@ else
             "PTC_MR:normal:0.10:0.5" "PTC_MR:normal:0.10:0.3" \
             "NCI1:normal:0.10:0.5" "NCI109:normal:0.10:0.5" \
             "MUTAG:nexp:0.10:0.3" "NCI1:nexp:0.10:0.3" )
-  TIME_CFG=( "MUTAG:0.10:0.5" "PTC_MR:0.10:0.5" "PTC_MR:0.10:0.3" "NCI1:0.10:0.5" ); PHASE_CFG=( "${TIME_CFG[@]}" ); ABL_CFG=( "${TIME_CFG[@]}" )
+  TIME_CFG=( "MUTAG:0.10:0.5" "PTC_MR:0.10:0.5" "PTC_MR:0.10:0.3" "NCI1:0.10:0.5" ); PHASE_CFG=( "${TIME_CFG[@]}" )
+  # Ablation omits PTC_MR at tauW=0.5: with ~18 patterns everything sits near the
+  # memory floor, so pivot-vs-plain has nothing to isolate there. It stays in the
+  # memory and time tables, where the point is the comparison, not the ablation.
+  ABL_CFG=( "MUTAG:0.10:0.5" "PTC_MR:0.10:0.3" "NCI1:0.10:0.5" )
   SG="0.15 0.10 0.05 0.02"; DO_OOM=1
 fi
 
