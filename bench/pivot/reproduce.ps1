@@ -39,20 +39,21 @@ if (-not (Test-Path "data\weighted\per_instance\normal\MUTAG.normal.s42.json")) 
 # ---- Parameters by mode -----------------------------------------------------
 if ($Mode -eq "quick") {
   $SEEDS = @(42,1337)
-  $MEM   = @("MUTAG:normal:0.10:0.5","PTC_MR:normal:0.10:0.3")
-  $TIMEC = @("MUTAG:0.10:0.5","PTC_MR:0.10:0.3")
-  $PHASE = @("MUTAG:0.10:0.5","PTC_MR:0.10:0.3")
-  $ABL   = @("MUTAG:0.10:0.5","PTC_MR:0.10:0.3")
+  $MEM   = @("MUTAG:normal:0.10:0.5","PTC_MR:normal:0.10:0.5")
+  $TIMEC = @("MUTAG:0.10:0.5","PTC_MR:0.10:0.5")
+  $PHASE = @("MUTAG:0.10:0.5","PTC_MR:0.10:0.5")
+  $ABL   = @("MUTAG:0.10:0.5","PTC_MR:0.10:0.5")
   $SG    = @(0.15,0.10)
   $doOOM = $false
 } else {
   $SEEDS = @(42,1337,2024,31415,271828)
   $MEM   = @("MUTAG:normal:0.10:0.5","MUTAG:normal:0.05:0.3",
-             "PTC_MR:normal:0.10:0.3","NCI1:normal:0.10:0.5","NCI109:normal:0.10:0.5",
+             "PTC_MR:normal:0.10:0.5","PTC_MR:normal:0.10:0.3",
+             "NCI1:normal:0.10:0.5","NCI109:normal:0.10:0.5",
              "MUTAG:nexp:0.10:0.3","NCI1:nexp:0.10:0.3")
-  $TIMEC = @("MUTAG:0.10:0.5","PTC_MR:0.10:0.3","NCI1:0.10:0.5")
-  $PHASE = @("MUTAG:0.10:0.5","PTC_MR:0.10:0.3","NCI1:0.10:0.5")
-  $ABL   = @("MUTAG:0.10:0.5","PTC_MR:0.10:0.3","NCI1:0.10:0.5")
+  $TIMEC = @("MUTAG:0.10:0.5","PTC_MR:0.10:0.5","PTC_MR:0.10:0.3","NCI1:0.10:0.5")
+  $PHASE = @("MUTAG:0.10:0.5","PTC_MR:0.10:0.5","PTC_MR:0.10:0.3","NCI1:0.10:0.5")
+  $ABL   = @("MUTAG:0.10:0.5","PTC_MR:0.10:0.5","PTC_MR:0.10:0.3","NCI1:0.10:0.5")
   $SG    = @(0.15,0.10,0.05,0.02)
   $doOOM = $true
 }

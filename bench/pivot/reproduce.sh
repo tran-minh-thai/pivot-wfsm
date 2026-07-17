@@ -27,15 +27,19 @@ fi
 
 if [ "$MODE" = "quick" ]; then
   SEEDS="42 1337"
-  MEM_CFG=( "MUTAG:normal:0.10:0.5" "PTC_MR:normal:0.10:0.3" )
-  TIME_CFG=( "MUTAG:0.10:0.5" "PTC_MR:0.10:0.3" ); PHASE_CFG=( "${TIME_CFG[@]}" ); ABL_CFG=( "${TIME_CFG[@]}" )
+  MEM_CFG=( "MUTAG:normal:0.10:0.5" "PTC_MR:normal:0.10:0.5" )
+  TIME_CFG=( "MUTAG:0.10:0.5" "PTC_MR:0.10:0.5" ); PHASE_CFG=( "${TIME_CFG[@]}" ); ABL_CFG=( "${TIME_CFG[@]}" )
   SG="0.15 0.10"; DO_OOM=0
 else
   SEEDS="42 1337 2024 31415 271828"
-  MEM_CFG=( "MUTAG:normal:0.10:0.5" "MUTAG:normal:0.05:0.3" "PTC_MR:normal:0.10:0.3" \
+  # Every `normal` dataset is measured at tauW=0.5, the common setting. The extra
+  # rows at tauW=0.3 (MUTAG at a lower support, PTC_MR at the same support) show
+  # how the advantage moves once a lower weight threshold admits more patterns.
+  MEM_CFG=( "MUTAG:normal:0.10:0.5" "MUTAG:normal:0.05:0.3" \
+            "PTC_MR:normal:0.10:0.5" "PTC_MR:normal:0.10:0.3" \
             "NCI1:normal:0.10:0.5" "NCI109:normal:0.10:0.5" \
             "MUTAG:nexp:0.10:0.3" "NCI1:nexp:0.10:0.3" )
-  TIME_CFG=( "MUTAG:0.10:0.5" "PTC_MR:0.10:0.3" "NCI1:0.10:0.5" ); PHASE_CFG=( "${TIME_CFG[@]}" ); ABL_CFG=( "${TIME_CFG[@]}" )
+  TIME_CFG=( "MUTAG:0.10:0.5" "PTC_MR:0.10:0.5" "PTC_MR:0.10:0.3" "NCI1:0.10:0.5" ); PHASE_CFG=( "${TIME_CFG[@]}" ); ABL_CFG=( "${TIME_CFG[@]}" )
   SG="0.15 0.10 0.05 0.02"; DO_OOM=1
 fi
 
