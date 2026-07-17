@@ -169,7 +169,7 @@ $aCsv = "$OUT\ablation.csv"; "dataset,sigma,tau,variant,seed,mean_ms" | Set-Cont
 $aAgg = @{}
 foreach ($cfg in $ABL) {
   $tag,$sig,$tau = $cfg -split ':'
-  $ns = if ($tag -eq "NCI1") { @(42,1337) } else { $SEEDS }
+  $ns = $SEEDS
   foreach ($v in @("pivot","pivot-nopf","pivot-plain","pivot-plain-nopf")) { foreach ($s in $ns) {
     $r = Run-Java "4g" 900 $v (Df $tag "normal" $s) ([double]$sig) ([double]$tau) 2 5
     if ($r.ok) { "$tag,$sig,$tau,$v,$s,$($r.mean)" | Add-Content $aCsv

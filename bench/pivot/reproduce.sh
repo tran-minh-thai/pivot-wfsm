@@ -127,7 +127,7 @@ echo ">> [6/8] Ablation 2x2 (Table 5) ..."
 ABLCSV="$OUT/ablation.csv"; echo "dataset,sigma,tau,variant,seed,mean_ms" > "$ABLCSV"
 for cfg in "${ABL_CFG[@]}"; do
   IFS=':' read -r tag sig tau <<< "$cfg"
-  ns=$([ "$tag" = NCI1 ] && echo "42 1337" || echo "$SEEDS")
+  ns="$SEEDS"
   for v in pivot pivot-nopf pivot-plain pivot-plain-nopf; do for s in $ns; do
     f=$(df_path "$tag" normal "$s"); l=$(java pivotwfsm.cli.SingleRun "$v" "$f" "$sig" "$tau" 2 5)
     echo "$tag,$sig,$tau,$v,$s,$(echo "$l"|cut -d, -f7)" | tee -a "$ABLCSV"

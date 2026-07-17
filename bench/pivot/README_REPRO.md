@@ -103,6 +103,15 @@ bash bench/pivot/extra_ptcmr_tau05.sh                                  # macOS/L
 powershell -ExecutionPolicy Bypass -File bench\pivot\extra_ptcmr_tau05.ps1   # Windows
 ```
 
+A second top-up re-measures the NCI1 ablation over all five seeds. It used to run
+on two, while every other configuration used five, so its row carried a standard
+deviation over n=2:
+
+```bash
+bash bench/pivot/extra_nci1_ablation.sh                                  # macOS/Linux
+powershell -ExecutionPolicy Bypass -File bench\pivot\extra_nci1_ablation.ps1   # Windows
+```
+
 Every normal-distribution dataset is measured at tauW=0.5; PTC-MR is reported at
 0.5 and at 0.3 because the weight threshold moves the result in both directions:
 0.3 admits many more patterns, so the embedding store grows and the memory
